@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b346b61e3a253194986d06850aed5efb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - standardBall: {fileID: 3984083803867277043, guid: 4968f1adbaa7ca24ba3e25e1bd20f8a8, type: 3}
+  - beachBall: {fileID: 3984083803867277043, guid: 0ef72565dac00bf41b1eccc08bdef1ef, type: 3}
+  - rockBall: {fileID: 3984083803867277043, guid: 89a1806f2f79df6418ff39a8d7fdf06f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

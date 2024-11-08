@@ -4,12 +4,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
     public float jumpForce = 5f;
-    public float flyForce = 10f;        // Fuerza de vuelo hacia arriba
-    public float maxFallSpeed = -10f;   // Velocidad máxima de caída durante el vuelo
-    public float gravity = -9.8f;       // Gravedad simulada en modo de vuelo
+    public float flapForce = 7f; // Fuerza de impulso para el vuelo estilo Flappy Bird
     private Rigidbody rb;
     private int currentBallType = 1;
     private bool isFlying = false;
+    public float flyForce = 10f;        // Fuerza de vuelo hacia arriba
+    public float maxFallSpeed = -10f;   // Velocidad máxima de caída durante el vuelo
+    public float gravity = -9.8f;
 
     void Start()
     {
@@ -17,26 +18,32 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update()
-    {            
+    {                        
+        // Movimiento normal hacia adelante
         transform.Translate(Vector3.right * speed * Time.deltaTime);
 
         if (!isFlying)
         {
-            // Movimiento hacia la derecha en modo normal
-
             // Salto si está en el suelo
             if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.01f)
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
         }
-        else
+        else if(isFlying && currentBallType == 1)
         {
-            // Comportamiento en modo de vuelo
             HandleFlight();
         }
+        else if(isFlying && currentBallType == 2)
+        {
+            //Nothing
+        }
+        else if (isFlying && currentBallType == 3)
+        {
+            HandleFlappyFlight();
+        }
 
-        // Cambiar tipo de pelota
+        //TIPO DE PELOTA
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             ChangeBehaviour(1);
@@ -54,6 +61,16 @@ public class PlayerMovement : MonoBehaviour
         if (currentBallType < 1) currentBallType = 3;
 
         Debug.Log("BOLA= " + currentBallType);
+    }
+
+    private void HandleFlappyFlight()
+    {
+        // Activa un impulso hacia arriba cuando se presiona la barra espaciadora
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reinicia la velocidad vertical
+            rb.AddForce(Vector3.up * flapForce, ForceMode.Impulse);
+        }
     }
 
     private void HandleFlight()
@@ -85,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (other.CompareTag("Spikes"))
+        if (other.CompareTag("Spikes") || other.CompareTag("Obstacle") || other.CompareTag("Void"))
         {
             if (GameManager.instance != null)
             {
@@ -95,8 +112,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Portal"))
         {
-            isFlying = !isFlying;  // Cambia entre modo vuelo y modo normal
-            Debug.Log("Modo de vuelo: " + isFlying);
+            if(isFlying == true)
+            {
+                isFlying = false;
+            }
+            else
+            {
+                isFlying = true;
+            }
         }
     }
 }

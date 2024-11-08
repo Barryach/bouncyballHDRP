@@ -10,6 +10,7 @@ TagManager:
   - Spikes
   - Lava
   - StoneWall
+  - Void
   layers:
   - Default
   - TransparentFX

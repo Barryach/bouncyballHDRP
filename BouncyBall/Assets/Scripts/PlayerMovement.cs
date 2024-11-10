@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
     public float jumpForce = 5f;
-    public float flapForce = 7f; // Fuerza de impulso para el vuelo estilo Flappy Bird
+    public float flapForce = 5f; // Fuerza de impulso para el vuelo estilo Flappy Bird
     private Rigidbody rb;
     private int currentBallType = 1;
     private bool isFlying = false;
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(isFlying && currentBallType == 2)
         {
-            //Nothing
+            HandleInvertedFlight();
         }
         else if (isFlying && currentBallType == 3)
         {
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         // Activa un impulso hacia arriba cuando se presiona la barra espaciadora
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reinicia la velocidad vertical
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);  // Reseteamos la velocidad vertical
             rb.AddForce(Vector3.up * flapForce, ForceMode.Impulse);
         }
     }
@@ -92,6 +92,27 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void HandleInvertedFlight()
+    {
+        // Aplica una "gravedad" positiva que impulse hacia arriba cuando no se presiona espacio
+        if (!Input.GetKey(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * flyForce, ForceMode.Acceleration); // Impulsa hacia arriba
+        }
+        else
+        {
+            // Al presionar espacio, aplica una fuerza descendente (simulando el descenso)
+            rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
+        }
+
+        // Limita la velocidad de ascenso para que no suba indefinidamente rápido
+        if (rb.velocity.y > -maxFallSpeed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, -maxFallSpeed, rb.velocity.z);
+        }
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if ((other.CompareTag("StoneWall") || other.CompareTag("Lava")) && currentBallType != 3)
@@ -112,14 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.CompareTag("Portal"))
         {
-            if(isFlying == true)
-            {
-                isFlying = false;
-            }
-            else
-            {
-                isFlying = true;
-            }
+            isFlying = !isFlying;
         }
     }
 }

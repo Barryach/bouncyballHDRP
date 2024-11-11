@@ -5,12 +5,12 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Level1");
     }
-
-    public void OpenOptions()
+    
+    public void LevelChose()
     {
-        SceneManager.LoadScene("OptionsMenu"); 
+        SceneManager.LoadScene("LevelsMenu");
     }
 
     public void ShowCredits()

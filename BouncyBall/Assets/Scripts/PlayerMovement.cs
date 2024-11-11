@@ -4,12 +4,12 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
     public float jumpForce = 5f;
-    public float flapForce = 5f; // Fuerza de impulso para el vuelo estilo Flappy Bird
+    public float flapForce = 5f;
     private Rigidbody rb;
     private int currentBallType = 1;
-    private bool isFlying = false;
-    public float flyForce = 10f;        // Fuerza de vuelo hacia arriba
-    public float maxFallSpeed = -10f;   // Velocidad máxima de caída durante el vuelo
+    public bool isFlying = false;
+    public float flyForce = 10f;     
+    public float maxFallSpeed = -10f;
     public float gravity = -9.8f;
 
     void Start()
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
-        }
+        }//Tipos de vuelo
         else if(isFlying && currentBallType == 1)
         {
             HandleFlight();
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             HandleFlappyFlight();
         }
 
-        //TIPO DE PELOTA
+        //Tipo de pelota
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             ChangeBehaviour(1);
@@ -59,33 +59,28 @@ public class PlayerMovement : MonoBehaviour
         currentBallType += direction;
         if (currentBallType > 3) currentBallType = 1;
         if (currentBallType < 1) currentBallType = 3;
-
-        Debug.Log("BOLA= " + currentBallType);
     }
 
     private void HandleFlappyFlight()
     {
-        // Activa un impulso hacia arriba cuando se presiona la barra espaciadora
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);  // Reseteamos la velocidad vertical
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); 
             rb.AddForce(Vector3.up * flapForce, ForceMode.Impulse);
         }
     }
 
     private void HandleFlight()
     {
-        // Activar fuerza de vuelo mientras se presiona la barra espaciadora
         if (Input.GetKey(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * flyForce, ForceMode.Acceleration);
         }
         else
         {
-            rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration); // Aplicar gravedad al soltar
+            rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
         }
 
-        // Limitar velocidad de caída
         if (rb.velocity.y < maxFallSpeed)
         {
             rb.velocity = new Vector3(rb.velocity.x, maxFallSpeed, rb.velocity.z);
@@ -94,18 +89,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleInvertedFlight()
     {
-        // Aplica una "gravedad" positiva que impulse hacia arriba cuando no se presiona espacio
         if (!Input.GetKey(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * flyForce, ForceMode.Acceleration); // Impulsa hacia arriba
+            rb.AddForce(Vector3.up * flyForce, ForceMode.Acceleration);
         }
         else
         {
-            // Al presionar espacio, aplica una fuerza descendente (simulando el descenso)
             rb.AddForce(Vector3.up * gravity, ForceMode.Acceleration);
         }
 
-        // Limita la velocidad de ascenso para que no suba indefinidamente rápido
         if (rb.velocity.y > -maxFallSpeed)
         {
             rb.velocity = new Vector3(rb.velocity.x, -maxFallSpeed, rb.velocity.z);

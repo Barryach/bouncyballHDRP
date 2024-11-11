@@ -5,6 +5,7 @@ public class BallChanger : MonoBehaviour
     public GameObject OrangeBall;
     public GameObject BeachBall;
     public GameObject RockBall;
+    public GameObject Wings;
 
     public Transform player;
 
@@ -22,19 +23,21 @@ public class BallChanger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            ChangeBall(1); 
+            ChangeBall(1);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            ChangeBall(-1); 
+            ChangeBall(-1);
         }
+
+        activateWings();
     }
 
     void ChangeBall(int direction)
     {
         currentBallType += direction;
-        if (currentBallType > 3) currentBallType = 1; 
-        if (currentBallType < 1) currentBallType = 3;  
+        if (currentBallType > 3) currentBallType = 1;
+        if (currentBallType < 1) currentBallType = 3;
 
         SetBallType(currentBallType);
     }
@@ -47,22 +50,33 @@ public class BallChanger : MonoBehaviour
 
         switch (ballType)
         {
-            case 1: 
+            case 1:
                 OrangeBall.SetActive(true);
                 playerMovement.speed = 5f;
                 playerMovement.jumpForce = 5f;
                 break;
-            case 2: 
+            case 2:
                 BeachBall.SetActive(true);
-                playerMovement.speed = 6f;  
-                playerMovement.jumpForce = 7f;  
+                playerMovement.speed = 6f;
+                playerMovement.jumpForce = 7f;
                 break;
-            case 3: 
+            case 3:
                 RockBall.SetActive(true);
-                playerMovement.speed = 4f; 
-                playerMovement.jumpForce = 4f; 
+                playerMovement.speed = 4f;
+                playerMovement.jumpForce = 4f;
                 break;
         }
     }
 
+    void activateWings()
+    {
+        if (playerMovement.isFlying)
+        {
+            Wings.SetActive(true);
+        }
+        else
+        {
+            Wings.SetActive(false);
+        }
+    }
 }

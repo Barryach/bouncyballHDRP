@@ -3,27 +3,25 @@ using UnityEngine;
 public class BallRoller : MonoBehaviour
 {
     public float rotationSpeed = 360f;
-    private bool isFlying = false;
+    public Transform player;
+
+    private PlayerMovement playerMovement;
+
+    void Start()
+    {
+        playerMovement = player.GetComponent<PlayerMovement>();
+    }
 
     void Update()
     {
-        if (!isFlying)
+        if (playerMovement.isFlying)
+        {
+            rotationSpeed = 0;
+        }
+        else
         {
             rotationSpeed = 360;
             transform.Rotate(Vector3.right, rotationSpeed * Time.deltaTime);
         }
-        else 
-        {
-            rotationSpeed = 0;
-            Debug.Log("DEJA DE ROTAR");
-        } 
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Portal"))
-        {
-            isFlying = !isFlying;
-        }
-    }
-}   
+}

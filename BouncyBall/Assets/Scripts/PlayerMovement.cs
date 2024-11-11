@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -126,6 +127,11 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Portal"))
         {
             isFlying = !isFlying;
+        }
+
+        if (other.CompareTag("Final"))
+        {
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

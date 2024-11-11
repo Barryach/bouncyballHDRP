@@ -11,6 +11,7 @@ TagManager:
   - Lava
   - StoneWall
   - Void
+  - Final
   layers:
   - Default
   - TransparentFX

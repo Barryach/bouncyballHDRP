@@ -127,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Portal"))
         {
             isFlying = !isFlying;
+            Debug.Log("isFlying");
         }
 
         if (other.CompareTag("Final"))

@@ -12,6 +12,7 @@ TagManager:
   - StoneWall
   - Void
   - Final
+  - Reloj
   layers:
   - Default
   - TransparentFX

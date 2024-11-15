@@ -54,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
             ChangeBehaviour(-1);
         }
     }
+    void FixedUpdate()
+    {
+
+    }
 
     void ChangeBehaviour(int direction)
     {
@@ -90,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleInvertedFlight()
     {
+
         if (!Input.GetKey(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * flyForce, ForceMode.Acceleration);
@@ -127,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
         if (other.CompareTag("Portal"))
         {
             isFlying = !isFlying;
-            Debug.Log("isFlying");
         }
 
         if (other.CompareTag("Final"))

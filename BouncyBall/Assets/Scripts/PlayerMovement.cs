@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private int currentBallType = 1;
     public bool isFlying = false;
-    public float flyForce = 10f;     
-    public float maxFallSpeed = -10f;
+    public float flyForce = 8f;
+    public float maxFallSpeed = -8f;
     public float gravity = -9.8f;
 
     void Start()
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update()
-    {                        
+    {
         // Movimiento normal hacia adelante
         transform.Translate(Vector3.right * speed * Time.deltaTime);
 
@@ -30,12 +30,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
-        }//Tipos de vuelo
-        else if(isFlying && currentBallType == 1)
+        }
+        else if (isFlying && currentBallType == 1)
         {
             HandleFlight();
         }
-        else if(isFlying && currentBallType == 2)
+        else if (isFlying && currentBallType == 2)
         {
             HandleInvertedFlight();
         }
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             HandleFlappyFlight();
         }
 
-        //Tipo de pelota
+        // Cambio de tipo de pelota
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             ChangeBehaviour(1);
@@ -54,9 +54,9 @@ public class PlayerMovement : MonoBehaviour
             ChangeBehaviour(-1);
         }
     }
+
     void FixedUpdate()
     {
-
     }
 
     void ChangeBehaviour(int direction)
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); 
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * flapForce, ForceMode.Impulse);
         }
     }
@@ -94,7 +94,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleInvertedFlight()
     {
-
         if (!Input.GetKey(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * flyForce, ForceMode.Acceleration);
@@ -110,30 +109,34 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+    // Manejo de colisiones (con Trigger)
     private void OnTriggerEnter(Collider other)
     {
+        // Colisiones con muros de piedra o lava
         if ((other.CompareTag("StoneWall") || other.CompareTag("Lava")) && currentBallType != 3)
         {
             if (GameManager.instance != null)
             {
-                GameManager.instance.PlayerDied();
+                GameManager.instance.PlayerDied();  // Reinicia la escena
             }
         }
 
+        // Colisiones con spikes, obstáculos o vacío
         if (other.CompareTag("Spikes") || other.CompareTag("Obstacle") || other.CompareTag("Void"))
         {
             if (GameManager.instance != null)
             {
-                GameManager.instance.PlayerDied();
+                GameManager.instance.PlayerDied();  // Reinicia la escena
             }
         }
 
+        // Tocar el portal activa el vuelo
         if (other.CompareTag("Portal"))
         {
-            isFlying = !isFlying;
+            isFlying = !isFlying;  // Cambia el estado de vuelo
         }
 
+        // Tocar la meta carga el menú principal
         if (other.CompareTag("Final"))
         {
             SceneManager.LoadScene("MainMenu");

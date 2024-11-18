@@ -30,6 +30,7 @@ public class BallChanger : MonoBehaviour
             ChangeBall(-1);
         }
 
+        // Activar alas si está volando
         activateWings();
     }
 
@@ -70,6 +71,7 @@ public class BallChanger : MonoBehaviour
 
     void activateWings()
     {
+        // Activar alas si está volando
         if (playerMovement.isFlying)
         {
             Wings.SetActive(true);

@@ -7,23 +7,26 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        // Verifica si ya existe una instancia de GameManager
         if (instance == null)
         {
-            instance = this;
+            instance = this;  // Si no existe, asigna esta instancia
         }
         else
         {
-            Debug.Log("¡Más de un Game Manager en escena!");
+            Debug.Log("¡Más de un GameManager en escena!");
         }
     }
 
+    // Método público para reiniciar la escena cuando el jugador muere
     public void PlayerDied()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // Reinicia la escena actual
     }
 
+    // Método público para ir al menú principal
     public void GoToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");  // Carga la escena de menú principal
     }
 }

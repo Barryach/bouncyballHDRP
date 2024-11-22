@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro; // Necesario para TextMeshPro
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,16 +27,19 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateClockCounterUI();  // Asegurarse de mostrar el contador al inicio
+        ResetTimeScale();  // Asegúrate de restaurar el tiempo al iniciar la escena
+        UpdateClockCounterUI();  // Asegúrate de mostrar el contador al inicio
     }
 
     public void PlayerDied()
     {
+        ResetTimeScale();  // Restaurar el tiempo al morir
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);  // Reinicia la escena actual
     }
 
     public void GoToMainMenu()
     {
+        ResetTimeScale();  // Restaurar el tiempo al volver al menú
         SceneManager.LoadScene("MainMenu");  // Carga la escena de menú principal
     }
 
@@ -45,7 +48,7 @@ public class GameManager : MonoBehaviour
         clockCount++;
         UpdateClockCounterUI();  // Actualizar la UI
 
-        if (clockCount >= 3 && !isBoostActive)
+        if (clockCount >= 3 && !isBoostActive)  // Cambiado a 3 para pruebas
         {
             ActivateSlowMotion();
             clockCount = 0;  // Reiniciar contador tras el boost
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
     {
         if (clockCounterText != null)
         {
-            clockCounterText.text = $"Relojes: {clockCount} / 5";
+            clockCounterText.text = $"Relojes: {clockCount} / 3";  // Cambiado a 3 para pruebas
         }
     }
 

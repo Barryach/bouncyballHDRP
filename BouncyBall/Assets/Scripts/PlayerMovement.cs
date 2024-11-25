@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5f;
     public float flapForce = 5f;
     private Rigidbody rb;
-    private int currentBallType = 1;
+    public int currentBallType = 1;
     public bool isFlying = false;
     public float flyForce = 8f;
     public float maxFallSpeed = -8f;
@@ -133,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
         // Tocar el portal activa el vuelo
         if (other.CompareTag("Portal"))
         {
+            Debug.Log("PORTAL");
             isFlying = !isFlying;  // Cambia el estado de vuelo
         }
 

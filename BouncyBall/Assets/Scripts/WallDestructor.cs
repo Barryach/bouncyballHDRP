@@ -12,20 +12,19 @@ public class WallScript : MonoBehaviour
         brokenWallEffect.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         // Verificar si la colisión es con el jugador
         if (other.CompareTag("Player"))
         {
-
-            // Verificar si la pelota actual es del tipo 3
-            if (ballChanger.currentBallType == 3)
+            // Verificar si la pelota actual es del tipo 3 utilizando el método público
+            if (ballChanger.GetCurrentBallType() == 3)
             {
                 DestroyWall();
             }
-            
         }
     }
+
 
     void DestroyWall()
     {
@@ -34,7 +33,6 @@ public class WallScript : MonoBehaviour
 
         // Activar el efecto de pared rota
         brokenWallEffect.SetActive(true);
-
 
         // Opcional: Destruir la pared después de un tiempo para limpiar la escena
         Destroy(wall, 0.5f);

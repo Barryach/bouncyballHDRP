@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.AddClock();
-            Destroy(gameObject);  // Destruir el reloj después de recogerlo
+            // Llama al método AddClock y pasa el reloj que se recoge como parámetro
+            GameManager.instance.AddClock(gameObject);  // 'gameObject' es el reloj actual
+
+            // Desactivar el reloj (se desactiva, pero no se elimina)
+            gameObject.SetActive(false);
         }
     }
+
 }

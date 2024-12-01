@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (GameManager.instance != null)
             {
-                GameManager.instance.PlayerDied();  // Reinicia la escena
+                GameManager.instance.PlayerDied(); 
             }
         }
 
@@ -126,14 +126,13 @@ public class PlayerMovement : MonoBehaviour
         {
             if (GameManager.instance != null)
             {
-                GameManager.instance.PlayerDied();  // Reinicia la escena
+                GameManager.instance.PlayerDied(); 
             }
         }
 
         // Tocar el portal activa el vuelo
         if (other.CompareTag("Portal"))
         {
-            Debug.Log("PORTAL");
             isFlying = !isFlying;  // Cambia el estado de vuelo
         }
 

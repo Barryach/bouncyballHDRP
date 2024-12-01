@@ -25,7 +25,6 @@ public class WallScript : MonoBehaviour
         }
     }
 
-
     void DestroyWall()
     {
         // Desactivar la pared principal

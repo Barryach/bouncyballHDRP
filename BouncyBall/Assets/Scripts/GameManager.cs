@@ -17,14 +17,13 @@ public class GameManager : MonoBehaviour
     private PlayerMovement playerMovement;
 
     public GameObject[] clocks;
-                                
+
 
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);  // Hace que el GameManager no se destruya al cargar una nueva escena
         }
         else
         {
@@ -32,6 +31,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     void Start()
     {
@@ -64,13 +64,13 @@ public class GameManager : MonoBehaviour
         isBoostActive = false;
 
         playerMovement.isFlying = false;
+        playerMovement.currentBallType = 1;
 
         // Cambiar a la pelota estándar (1) al morir
         if (ballChanger != null)
         {
-            ballChanger.SetBallType(1);  // Cambiar a la pelota estándar (1)
-            ballChanger.currentBallType = 1;  // Asegurarse de que currentBall sea 1
-
+            ballChanger.SetBallType(1);  // Cambiar a la bola 1
+            ballChanger.currentBallType = 1;
         }
         else
         {

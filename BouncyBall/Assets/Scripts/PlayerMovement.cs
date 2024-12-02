@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     public int currentBallType = 1;
     public bool isFlying = false;
-    public float flyForce = 8f;
-    public float maxFallSpeed = -8f;
+    public float flyForce = 10f;
+    public float maxFallSpeed = -10f;
     public float gravity = -9.8f;
 
     void Start()

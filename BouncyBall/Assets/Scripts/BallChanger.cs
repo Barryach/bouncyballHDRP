@@ -9,7 +9,6 @@ public class BallChanger : MonoBehaviour
 
     private PlayerMovement playerMovement;
     public int currentBallType = 1;
-    public int currentBall = 1;
 
     void Start()
     {

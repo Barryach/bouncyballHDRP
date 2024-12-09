@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4561.7095, g: 3387.6118, b: 3571.352, a: 1}
+  m_IndirectSpecularColor: {r: 4563.7603, g: 3387.5747, b: 3569.7896, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5784,7 +5784,6 @@ MonoBehaviour:
   Wings: {fileID: 1889888085}
   player: {fileID: 1324800287}
   currentBallType: 1
-  currentBall: 1
 --- !u!114 &416391093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14972,6 +14971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialText: {fileID: 1487928512}
+  typingSpeed: 0.05
 --- !u!1001 &1063660264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20456,6 +20456,7 @@ GameObject:
   - component: {fileID: 1487928511}
   - component: {fileID: 1487928513}
   - component: {fileID: 1487928512}
+  - component: {fileID: 1487928514}
   m_Layer: 5
   m_Name: TextTutorial
   m_TagString: Untagged
@@ -20470,7 +20471,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487928510}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20530,8 +20531,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.35
-  m_fontSizeBase: 51.35
+  m_fontSize: 39.7
+  m_fontSizeBase: 39.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -20580,6 +20581,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487928510}
   m_CullTransparentMesh: 1
+--- !u!114 &1487928514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487928510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd74dad4a69bde84a923bdb128a57438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 1487928512}
+  typingSpeed: 0.5
 --- !u!4 &1489943409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5cde7e041e3442f48920017d63ab306e,
@@ -24396,50 +24411,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1846530783}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1849134907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1849134909}
-  - component: {fileID: 1849134908}
-  m_Layer: 0
-  m_Name: FPS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1849134908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849134907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a37aed65482d14eb6f4254a54c12c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1849134909
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849134907}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85.87646, y: 4.2680416, z: 1.2249825}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1850785439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5cde7e041e3442f48920017d63ab306e,
@@ -27245,7 +27216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109474353}
   serializedVersion: 2
-  m_LocalRotation: {x: 3e-45, y: 1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -1e-45, y: 1e-45, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1, z: -13.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28646,6 +28617,5 @@ SceneRoots:
   - {fileID: 277224651}
   - {fileID: 1817607616}
   - {fileID: 262652405}
-  - {fileID: 1849134909}
   - {fileID: 1140035901}
   - {fileID: 1619487670}

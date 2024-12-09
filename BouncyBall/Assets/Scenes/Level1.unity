@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4562.44, g: 3388.0024, b: 3571.5864, a: 1}
+  m_IndirectSpecularColor: {r: 4555.518, g: 3409.8774, b: 3651.4692, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10339,7 +10339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RELOJES: 0'
+  m_text: 'RELOJES:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a75ec0e1de25064c928cb0b6b6eaa99, type: 2}
   m_sharedMaterial: {fileID: 4889751061704701262, guid: 2a75ec0e1de25064c928cb0b6b6eaa99,
@@ -12767,7 +12767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906341927}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10018481, y: 0.12222268, z: -0.01240167, w: 0.9873555}
+  m_LocalRotation: {x: 0.100184806, y: 0.12222269, z: -0.01240167, w: 0.9873555}
   m_LocalPosition: {x: -1.76, y: 1.58, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13409,7 +13409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10018481, y: 0.12222268, z: -0.01240167, w: 0.9873555}
+  m_LocalRotation: {x: 0.100184806, y: 0.12222269, z: -0.01240167, w: 0.9873555}
   m_LocalPosition: {x: -1.76, y: 1.58, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
